@@ -1,0 +1,243 @@
+/*****************************************************************
+GENERAL
+*****************************************************************/
+
+.wrapper {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body {
+  color: #999;
+}
+
+h2{
+  text-align: center;
+}
+
+
+hr {
+  border: none;
+}
+
+a {
+  color: #939393;
+}
+
+
+a:hover, a:focus {
+  color: rgba(255,239,26, 0.8);
+}
+/*****************************************************************
+NAVIGATION - MOBILE
+*****************************************************************/
+.nav-mobile {
+  display: none;
+}
+
+.open-mobile-nav {
+  color: #fff;
+}
+
+.open-mobile-nav:hover {
+  color: rgba(255,239,26, 0.8);
+}
+
+.nav-mobile-icon {
+  max-width: 35px;
+}
+
+.off-canvas-wrapper {
+  background-image: url("http://annakozlova.com/new/project/img/pattern.png");
+
+}
+
+
+/*****************************************************************
+NAVIGATION - DESKTOP
+*****************************************************************/
+.nav-desktop {
+  height: 80px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.top-bar ul {
+  background-color: transparent;
+}
+.top-bar {
+  background-image: url("../img/pattern.png");
+}
+
+.menu-text a {
+  color: grey;
+  padding: 17px;
+}
+
+.menu-text a:hover {
+  color: #fff;
+  background-color: rgba(255,239,26, 0.7);
+}
+
+/*****************************************************************
+CONTENT
+*****************************************************************/
+.main {
+  background-image: url("../img/pattern.png");
+  padding: 80px 0px;
+}
+.white-divider {
+  border-top: 0.1px solid #fff;
+  width: 300px;
+}
+
+.portfolio-img {
+  border-radius: 5px;
+}
+
+.portfolio-img:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24);
+  transition: all 0.2s ease-in-out;
+  border-radius: 5px;
+}
+
+/*****************************************************************
+HERO
+*****************************************************************/
+.hero-title-padding {
+  padding-top: 50px;
+}
+
+.hero {
+  background-color: #939393;
+  padding: 100px 0px;
+  color: #fff;
+  text-align: center;
+  height: 550px;
+}
+
+
+.hero p {
+  max-width: 90%;
+}
+
+.grey-divider {
+  border-top: 0.1px solid darkgrey;
+  width: 300px;
+}
+
+.column {
+  padding-top: 35px;
+}
+
+.column p {
+  max-width: 95%;
+}
+
+.photo-of-me {
+  border-radius: 5px;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.photo-of-me:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24);
+  transition: all 0.2s ease-in-out;
+  border-radius: 5px;
+
+}
+
+/*****************************************************************
+CONTACT
+*****************************************************************/
+.contact {
+  background-color: #939393;
+  padding: 80px 0px;
+  color: #fff;
+}
+
+.button {
+  font-size: 15px;
+  font-weight: normal;
+  color: #939393;
+  background-color: #fff;
+  width: 150px;
+}
+
+.button:hover {
+  background-color: rgba(255,239,26, 0.8);
+}
+
+textarea {
+   resize: none;
+   height: 250px;
+}
+
+/*****************************************************************
+FOOTER
+*****************************************************************/
+footer {
+  background-image: url("../img/pattern.png");
+  text-align: center;
+  padding: 80px 0px 15px;
+}
+
+.copyrigth {
+  padding-top: 35px;
+  font-size: 13px;
+}
+
+.columns a {
+  color: darkgrey;
+  padding: 5px;
+}
+
+.columns a:hover {
+  color: rgba(255,239,26, 0.7);
+}
+
+
+/*****************************************************************
+MEDIA QUERIES
+*****************************************************************/
+
+@media (max-width: 639px) {
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-mobile {
+    display: block;
+  }
+
+
+  .main {
+    text-align: center;
+  }
+
+  .hero-title-padding{
+    padding-top: 0;
+  }
+
+  .hero {
+    padding-top: 40px;
+  }
+
+  .grey-divider {
+    max-width: 100px;
+    padding-bottom: 25px;
+  }
+
+  .white-divider {
+    max-width: 100px;
+    padding-bottom: 25px;
+  }
+
+  .photo-of-me {
+    max-width: 200px;
+  }
+
+}
