@@ -1,104 +1,163 @@
-<?php
-/*
-Plugin Name: Thai Lottery Widget
-Plugin URI: https://www.lottery.co.th/code
-Description: แสดงผลสลากกินแบ่งรัฐบาลไทย พร้อมระบบตรวจหวยงวดล่าสุด ==เพิ่มการแสดงผล Widget ได้ที่หน้า <a href="widgets.php">วิดเจ็ต</a>== =*การใช้งาน Shortcode*=  <strong>[thailottery width="300" height="640"]</strong> นำโค้ดนี้ไปวางในส่วนของหน้าเพจหรือหน้าเนื้อหาเพื่อแสดงผล *** width=ความกว้าง ค่าปกติ 300, height=ความสูง ค่าปกติ 640
-Version: 1.2
-Author: siamlottery
-Author URI: https://www.lottery.co.th
-License: GPL2
-*/
-?>
-<?php
-class wp_thailottery_plugin extends WP_Widget {
-	// constructor
-	function __construct() {
-	$widget_ops = array('classname' => 'wp_thailottery_plugin', 'description' => __('widget สำหรับการแสดงผลสลากกินแบ่งรัฐบาล นำไปวางในส่วนที่ท่านต้องการให้แสดงผล', 'wp_widget_plugin'));
-	$control_ops = array('width' => 400, 'height' => 300);
-	parent::WP_Widget(false, $name = __('Thai Lottery Widget: โค้ดตรวจหวย', 'wp_widget_plugin'), $widget_ops, $control_ops );
-}
-/*
- function wp_thailottery_plugin() {
-        parent::WP_Widget(false, $name = __('Thai Lottery Widget: โค้ดตรวจหวย', 'wp_widget_plugin') );
-    }
-*/
-// widget form creation
-function form($instance) {
-// Check values
-if( $instance) {
-     $title = esc_attr($instance['title']);
-     $width = esc_attr($instance['width']);
-     $height = esc_attr($instance['height']);
-} else {
-     $title = '';
-     $width = '300';
-     $height = '640';
-}
-?>
-<p>
-<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('หัวข้อ', 'wp_widget_plugin'); ?></label>
-<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
-</p>
-<p>
-<label for="<?php echo $this->get_field_id('width'); ?>"><?php _e('ขนาดความกว้าง', 'wp_widget_plugin'); ?></label>
-(ค่าปกติ 300)
-<input class="widefat" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="text" value="<?php echo $width; ?>" />
-</p>
-<p>
-<label for="<?php echo $this->get_field_id('height'); ?>"><?php _e('ขนาดความสูง', 'wp_widget_plugin'); ?></label>
-(ค่าปกติ 640)
-<input class="widefat" id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" type="text" value="<?php echo $height; ?>" />
-</p>
-<p>
-การใช้งาน Shortcode<br/>
-<strong>[thailottery width="300" height="640"]</strong><br/>
-นำโค้ดด้านบนนี้ไปวางในส่วนของหน้าเพจหรือหน้าเนื้อหาเพื่อแสดงผล
-<br/><em>width=ความกว้าง ค่าปกติ 300, height=ความสูง ค่าปกติ 640</em>
-</p>
-<?php
-}
-// update widget
-function update($new_instance, $old_instance) {
-      $instance = $old_instance;
-      $instance['title'] = strip_tags($new_instance['title']);
-      $instance['height'] = strip_tags($new_instance['height']);
-      $instance['width'] = strip_tags($new_instance['width']);
-     return $instance;
-}
-// display widget
-function widget($args, $instance) {
-   extract( $args );
-     $width = $instance[ 'width' ];
-     $height = $instance[ 'height' ];
-   $title = apply_filters('widget_title', $instance['title']);
-   echo $before_widget;
-   //echo '<div class="widget-text wp_widget_plugin_box">';
-   // Check if title is set
-   if ( $title ) {
-      echo $before_title . $title . $after_title;
-   }
-  if($width) {
-      $mywidth=$width;
-   }else{
-$mywidth='300';
-}
-  if($height) {
-      $myheight=$height;
-   }else{
-$myheight='640';
-}
-   echo '<iframe src=https://www.lottery.co.th/share width='.$mywidth.' height='.$myheight.' frameborder=0></iframe>';
-   echo $after_widget;
-}
-}
-function sthailottery($atts, $content = null ) {
-    $a = shortcode_atts( array(
-        'width' => '300',
-        'height' => '640',
-    ), $atts );
-       return '<iframe src=https://www.lottery.co.th/share width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
-}
-add_shortcode('thailottery', 'sthailottery');
-// register widget
-add_action('widgets_init', create_function('', 'return register_widget("wp_thailottery_plugin");'));
-?>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web UI Developer</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="https://use.fontawesome.com/b89ca41394.js"></script>
+  </head>
+  <body>
+      <div class="off-canvas-wrapper">
+        <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+          <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+
+            <!-- Close button -->
+            <button class="close-button" aria-label="Close menu" type="button" data-close>
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <!-- Menu -->
+            <aside class="left-off-canvas-menu">
+              <ul class="vertical menu menu-text">
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </aside>
+
+
+          </div><!-- off-canvas position-right -->
+
+          <div class="off-canvas-content" data-off-canvas-content>
+
+            <!-- DESKTOP NAVIGATION -->
+            <nav class="top-bar nav-desktop">
+              <div class="wrapper">
+                <div class="top-bar-left">
+                    <a href="#" class="logo-text"><h3 class="menu-text">The Cat</h3></a>
+                </div>
+
+                <div class="top-bar-right">
+                  <ul class="menu menu-text">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+
+              </div><!-- // wrapper -->
+            </nav>
+
+
+            <!-- HERO NAVIGATION -->
+            <section class="hero" id="about">
+              <!-- Open Menu-->
+              <a class="open-mobile-nav nav-mobile" data-toggle="offCanvas" href="#"><img class="nav-mobile-icon" src="img/menu-icon-ill.png" alt="menu"/></a>
+              <!--<h1 class="nav-mobile" data-toggle="offCanvas">
+                menu
+              </h1>-->
+              <div class="wrapper row hero-title-padding">
+                <div class="column small-12 medium-8">
+                  <p>Clean high-quality websites with exceptional user experience</p>
+                  <hr class="grey-divider">
+                  <h1>Front End Developer / Designer </h1>
+                </div>
+                <div class="column small-12 medium-4">
+                  <img class="photo-of-me" src="img/hipster-cat.jpg" alt="placeholder">
+                </div>
+              </div>
+            </section>
+
+            <!-- MAIN CONTENT -->
+            <section class="main" id="portfolio">
+              <h2>Portfolio</h2>
+              <hr class="grey-divider">
+              <div class="wrapper row small-up-1 medium-up-2">
+                <div class="column">
+                  <h3>Main Section</h3>
+                  <p>This human feeds me, i should be a god refuse to leave cardboard box
+                  chew foot, or find empty spot in cupboard and sleep all day. Lick yarn
+                  hanging out of own butt.</p>
+                  <a href="#"><img class="portfolio-img" src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97300&w=400&h=300" alt="" /></a>
+                </div>
+                <div class="column">
+                  <h3>Second Section</h3>
+                  <p>This human feeds me, i should be a god refuse to leave cardboard box
+                  chew foot, or find empty spot in cupboard and sleep all day. Lick yarn
+                  hanging out of own butt.</p>
+                  <a href="#"><img class="portfolio-img" src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97300&w=400&h=300" alt="" /></a>
+                </div>
+                <div class="column">
+                  <h3>Third Section</h3>
+                  <p>This human feeds me, i should be a god refuse to leave cardboard box
+                  chew foot, or find empty spot in cupboard and sleep all day. Lick yarn
+                  hanging out of own butt.</p>
+                  <a href="#"><img class="portfolio-img" src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97300&w=400&h=300" alt="" /></a>
+                </div>
+                <div class="column">
+                  <h3>Fourth Section</h3>
+                  <p>This human feeds me, i should be a god refuse to leave cardboard box
+                  chew foot, or find empty spot in cupboard and sleep all day. Lick yarn
+                  hanging out of own butt.</p>
+                  <a href="#"><img class="portfolio-img" src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97300&w=400&h=300" alt="" /></a>
+                </div>
+              </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section class="contact" id="contact">
+                <h2>Contact Me</h2>
+                <hr class="white-divider">
+
+                  <div class="wrapper row">
+                    <div class="medium-7 columns">
+                      <form>
+                        <div>
+                          <p>Name:<input type="text" name="name"></p>
+                        </div>
+                        <div>
+                          <p>Email Adress:<input type="text" name="name"></p>
+                        </div>
+                        <div>
+                          <p>Message:<textarea name="usr-msg"></textarea></p>
+                        </div>
+                        <div class="button">
+                          <button type="button" name="button">Send Message</button>
+                        </div>
+                        <!-- TODO: add reset button -->
+                      </form>
+                    </div>
+                    <div class="medium-5 columns">
+                      <p class="contact-form-description">
+                        When requesting more info about me and my expirience, please use the form instead.
+                        I promise to reply A.S.A.P.
+                      </p>
+                      <p>Residing place: San Francisco Bay Area, CA</p>
+                    </div>
+                  </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer>
+              <div class="wrapper row">
+                <div class="medium-12 columns">
+                  <a href="#"><i class="fa fa-lg fa-linkedin" aria-hidden="true"></i></a>
+                  <a href="#"><i class="fa fa-lg fa-github" aria-hidden="true"></i></a>
+                  <a href="#"><i class="fa fa-lg fa-twitter" aria-hidden="true"></i></a>
+                  <a href="#"><i class="fa fa-lg fa-instagram" aria-hidden="true"></i></a>
+              </div>
+              <p class="copyrigth">The Cat &copy; 2016 All Right Reserved</p>
+            </footer>
+
+          </div><!-- off-canvas-content -->
+        </div><!-- off-canvas-wrapper-inner -->
+      </div><!-- off-canvas-wrapper -->
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+  </body>
